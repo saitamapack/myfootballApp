@@ -32,7 +32,7 @@ export default async function Team({
             <div className="flex flex-col max-w-7xl p-5 w-full md:flex-row">
                 <div className="flex flex-col md:w-1/3 justify-center items-center
                 bg-gradient-to-r from-black/60 to-red-800/80 h-[500px]">
-                    <Image
+                    <img
                         src={teamInfo.team.logo}
                         alt="TeamLogo"
                         width={150}
