@@ -82,7 +82,7 @@ export default function Fixtures({
                                     bg-gradient-to-r from-black/90 to-black/40 hover:bg-red-800"
                                 >
                                     <div className="flex flex-col justify-center items-center w-3/12 text-sm text-center">
-                                        <Image
+                                        <img
                                             src={fixture.teams.home.logo}
                                             alt="HomeLogo"
                                             width={70}
@@ -130,7 +130,7 @@ export default function Fixtures({
                                         <div className="h-1/6 text-center text-[8px] md:text-xs"></div>
                                     </div>
                                     <div className="flex flex-col justify-center items-center w-3/12 text-sm text-center">
-                                        <Image
+                                        <img
                                             src={fixture.teams.away.logo}
                                             alt="AwayLogo"
                                             width={70}
@@ -169,7 +169,7 @@ export default function Fixtures({
                                     bg-gradient-to-r from-black/90 to-black/40 hover:bg-red-800"
                             >
                                 <div className="flex flex-col justify-center items-center w-3/12 text-sm text-center">
-                                    <Image
+                                    <img
                                         src={fixture.teams.home.logo}
                                         alt="HomeLogo"
                                         width={70}
@@ -219,7 +219,7 @@ export default function Fixtures({
                                     <div className="h-1/6 text-center text-[8px] md:text-xs"></div>
                                 </div>
                                 <div className="flex flex-col justify-center items-center w-3/12 text-sm text-center">
-                                    <Image
+                                    <img
                                         src={fixture.teams.away.logo}
                                         alt="AwayLogo"
                                         width={70}

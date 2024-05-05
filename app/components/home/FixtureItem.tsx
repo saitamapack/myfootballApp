@@ -26,7 +26,7 @@ export default function FixtureItem({
             ${index % 2 === 0 ? 'bg-black/40' : ''} animated-div`}
         >
             <div className="w-1/3 flex flex-col justify-center items-center text-center">
-                <Image
+                <img
                     src={match.teams.home.logo}
                     alt="HomeLogo"
                     width={70}
@@ -42,7 +42,7 @@ export default function FixtureItem({
                 <div className="h-1/3"></div>
             </div>
             <div className="w-1/3 flex flex-col justify-center items-center text-center">
-                <Image
+                <img
                     src={match.teams.away.logo}
                     alt="HomeLogo"
                     width={70}

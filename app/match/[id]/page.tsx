@@ -33,7 +33,7 @@ export default async function Match({
                     <Link
                         href={`../team/${fixtureByFixtureId.teams.home.id}`}
                     >
-                        <Image
+                        <img
                             src={fixtureByFixtureId.teams.home.logo}
                             alt="HomeLogoMatch"
                             width={250}
@@ -82,7 +82,7 @@ export default async function Match({
                     <Link
                         href={`../team/${fixtureByFixtureId.teams.away.id}`}
                     >
-                        <Image
+                        <img
                             src={fixtureByFixtureId.teams.away.logo}
                             alt="AwayLogoMatch"
                             width={250}
