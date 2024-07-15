@@ -44,6 +44,11 @@ export default function Home() {
         }
       }
 
+      // Alert with scores if they have changed
+      if (match.score1 !== team1Score || match.score2 !== team2Score) {
+        alert(`Score updated for match ${match.match_id}: ${team1Score} - ${team2Score}`);
+      }
+
       // Update the scores in the match object
       match.score1 = team1Score;
       match.score2 = team2Score;
@@ -127,4 +132,4 @@ export default function Home() {
       <pre>{displayJSON(matches)}</pre>
     </div>
   );
-      }
+                                }
