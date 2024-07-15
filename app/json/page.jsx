@@ -80,7 +80,7 @@ export default function Home() {
 
   // Load initial JSON data from matches.json
   const loadInitialData = () => {
-    fetch('https://res.cloudinary.com/ds8s4fn5p/raw/upload/v1720999788/matches.json')
+    fetch('https://res.cloudinary.com/ds8s4fn5p/raw/upload/matches.json')
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
