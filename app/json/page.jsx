@@ -1,6 +1,6 @@
 "use client";
 
- import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import crypto from 'crypto-js';
 
 const cloudinaryConfig = {
@@ -97,7 +97,7 @@ export default function Home() {
     }
   };
 
-  // Load initial JSON data from matches.json
+  // Load initial JSON data from Cloudinary
   const loadInitialData = () => {
     fetch('https://res.cloudinary.com/ds8s4fn5p/raw/upload/matches.json')
       .then((response) => {
@@ -127,4 +127,4 @@ export default function Home() {
       <pre>{displayJSON(matches)}</pre>
     </div>
   );
-        }
+      }
