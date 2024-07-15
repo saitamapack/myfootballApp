@@ -1,6 +1,14 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+ import { useEffect, useState } from 'react';
+import crypto from 'crypto-js';
+
+const cloudinaryConfig = {
+  cloud_name: 'ds8s4fn5p',
+  api_key: '731143319737329',
+  api_secret: 'HD479cTPf2KY6iI7LEuJzrvNTpM',
+  upload_preset: 'yeufjqiy',
+};
 
 export default function Home() {
   const [matches, setMatches] = useState([]);
@@ -48,39 +56,50 @@ export default function Home() {
   const fetchAndUpdateScores = async () => {
     try {
       await Promise.all(matches.map(fetchAndUpdateSingleMatch));
-      // Save updated JSON to server
-      saveToJsonFile();
+      // Save updated JSON and upload to Cloudinary
+      uploadToCloudinary(JSON.stringify(matches));
     } catch (error) {
       console.error('Error updating scores:', error);
     }
   };
 
-  // Function to save updated JSON to server
-  const saveToJsonFile = () => {
-    fetch('/api/save-json', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(matches),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Failed to save data. Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(() => {
-        console.log('Data saved successfully to server!');
-      })
-      .catch((error) => {
-        console.error('Failed to save data:', error);
+  // Function to upload JSON to Cloudinary
+  const uploadToCloudinary = async (jsonData) => {
+    const timestamp = Math.floor(Date.now() / 1000);
+    const signature = crypto
+      .SHA1(`invalidate=true&timestamp=${timestamp}&upload_preset=${cloudinaryConfig.upload_preset}${cloudinaryConfig.api_secret}`)
+      .toString();
+
+    const formData = new FormData();
+    const blob = new Blob([jsonData], { type: 'application/json' });
+    formData.append('file', blob);
+    formData.append('upload_preset', cloudinaryConfig.upload_preset);
+    formData.append('timestamp', timestamp);
+    formData.append('api_key', cloudinaryConfig.api_key);
+    formData.append('signature', signature);
+    formData.append('invalidate', 'true');
+
+    try {
+      const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloud_name}/auto/upload`, {
+        method: 'POST',
+        body: formData,
       });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log('Data uploaded to Cloudinary successfully!', result);
+      } else {
+        console.error('Failed to upload data to Cloudinary.', result);
+      }
+    } catch (error) {
+      console.error('Error uploading to Cloudinary:', error);
+    }
   };
 
   // Load initial JSON data from matches.json
   const loadInitialData = () => {
-    fetch('https://res.cloudinary.com/ds8s4fn5p/raw/upload/matches.json')
+    fetch('http://res.cloudinary.com/ds8s4fn5p/raw/upload/matches.json')
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -108,4 +127,4 @@ export default function Home() {
       <pre>{displayJSON(matches)}</pre>
     </div>
   );
-    }
+        }
