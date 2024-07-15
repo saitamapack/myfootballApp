@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className='relative bg-black'>
+        <div className='relative'>
           <div className='absolute top-0 left-0 w-full h-full'>
             
           </div>
